@@ -15,6 +15,7 @@ use serde_json_bytes::Map as JsonMap;
 use serde_json_bytes::Value;
 use static_assertions::assert_impl_all;
 use tower::BoxError;
+use std::fmt::Debug;
 
 use crate::error::Error;
 use crate::graphql;
@@ -156,6 +157,7 @@ impl Request {
 }
 
 assert_impl_all!(Response: Send);
+#[derive(Debug)]
 #[non_exhaustive]
 pub struct Response {
     pub response: http::Response<BoxStream<'static, graphql::Response>>,
