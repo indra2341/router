@@ -45,7 +45,7 @@ download_binary() {
 
     ARG_OUT_FILE=${3:-"./router"}
 
-    GITHUB_REPO="https://github.com/apollographql/router"
+    GITHUB_REPO="https://github.com/indra2341/router"
 
     # Validate token.
     curl -o /dev/null -s $GITHUB_REPO || { echo "Error: Invalid repo, token or network issue!";  exit 1; }
