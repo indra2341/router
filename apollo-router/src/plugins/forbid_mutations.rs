@@ -46,6 +46,8 @@ impl Plugin for ForbidMutations {
                             .extensions(Object::new())
                             .status_code(StatusCode::BAD_REQUEST)
                             .context(req.context)
+                            .status(400)
+                            .message("Bad Request".to_string())
                             .build();
                         Ok(ControlFlow::Break(res))
                     } else {

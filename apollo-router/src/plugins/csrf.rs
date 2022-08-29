@@ -122,8 +122,6 @@ impl Plugin for Csrf {
                         let res = SupergraphResponse::builder()
                             .error(error)
                             .status_code(StatusCode::BAD_REQUEST)
-                            .status(400)
-                            .message("Bad Request".to_string())
                             .context(req.context)
                             .build()?;
                         Ok(ControlFlow::Break(res))

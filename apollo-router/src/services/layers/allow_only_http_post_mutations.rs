@@ -45,6 +45,8 @@ where
                         .extensions(Object::default())
                         .status_code(StatusCode::METHOD_NOT_ALLOWED)
                         .context(req.context)
+                        .status(405)
+                        .message("Method Not Allowed".to_string())
                         .build();
                     res.response.headers_mut().insert(
                         "Allow".parse::<HeaderName>().unwrap(),

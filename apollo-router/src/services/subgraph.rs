@@ -104,6 +104,8 @@ impl Response {
     fn new(
         label: Option<String>,
         data: Option<Value>,
+        status: Option<i32>,
+        message: Option<String>,
         path: Option<Path>,
         errors: Vec<Error>,
         extensions: Object,
@@ -113,6 +115,8 @@ impl Response {
         // Build a response
         let res = graphql::Response::builder()
             .and_label(label)
+            .and_status(status)
+            .and_message(message)
             .data(data.unwrap_or_default())
             .and_path(path)
             .errors(errors)
@@ -137,6 +141,8 @@ impl Response {
     fn fake_new(
         label: Option<String>,
         data: Option<Value>,
+        status: Option<i32>,
+        message: Option<String>,
         path: Option<Path>,
         errors: Vec<Error>,
         // Skip the `Object` type alias in order to use buildstructor’s map special-casing
@@ -147,6 +153,8 @@ impl Response {
         Response::new(
             label,
             data,
+            status,
+            message,
             path,
             errors,
             extensions,
@@ -165,6 +173,8 @@ impl Response {
         context: Context,
     ) -> Result<Response, BoxError> {
         Ok(Response::new(
+            Default::default(),
+            Default::default(),
             Default::default(),
             Default::default(),
             Default::default(),

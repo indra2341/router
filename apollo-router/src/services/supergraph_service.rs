@@ -221,6 +221,12 @@ where
                                                         .and_label(
                                                             response.label.clone(),
                                                         )
+                                                        .and_status(
+                                                            response.status.clone(),
+                                                        )
+                                                        .and_message(
+                                                            response.message.clone(),
+                                                        )
                                                         .data(data)
                                                         .path(path)
                                                         .errors(response.errors.clone())
@@ -274,8 +280,6 @@ where
                 .errors(errors)
                 .status_code(status_code)
                 .context(context_cloned)
-                .status(200)
-                .message("")
                 .build()
                 .expect("building a response like this should not fail"))
         });

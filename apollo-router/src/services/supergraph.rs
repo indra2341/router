@@ -172,8 +172,6 @@ impl Response {
     fn new(
         data: Option<Value>,
         path: Option<Path>,
-        status: i32,
-        message: String,
         errors: Vec<Error>,
         // Skip the `Object` type alias in order to use buildstructor’s map special-casing
         extensions: JsonMap<ByteString, Value>,
@@ -185,8 +183,6 @@ impl Response {
         let b = graphql::Response::builder()
             .and_path(path)
             .errors(errors)
-            .status(status)
-            .message(message)
             .extensions(extensions);
         let res = match data {
             Some(data) => b.data(data).build(),
@@ -230,8 +226,6 @@ impl Response {
         Response::new(
             data,
             path,
-            200,
-            String::default(),
             errors,
             extensions,
             status_code,
@@ -247,16 +241,12 @@ impl Response {
     fn error_new(
         errors: Vec<Error>,
         status_code: Option<StatusCode>,
-        status: i32,
-        message: String,
         headers: MultiMap<TryIntoHeaderName, TryIntoHeaderValue>,
         context: Context,
     ) -> Result<Self, BoxError> {
         Response::new(
             Default::default(),
             None,
-            status,
-            message,
             errors,
             Default::default(),
             status_code,
@@ -380,8 +370,6 @@ mod test {
             .context(Context::new())
             .extension("foo", json!({}))
             .data(json!({}))
-            .status(200)
-            .message("bar")
             .build()
             .unwrap();
 
