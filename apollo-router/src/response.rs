@@ -195,11 +195,9 @@ pub struct IncrementalResponse {
     pub label: Option<String>,
 
     // custom response status
-    #[serde(skip_serializing_if = "Option::is_none", default)]
     pub status: Option<i32>,
     
     // custom response message
-    #[serde(skip_serializing_if = "Option::is_none", default)]
     pub message: Option<String>,
 
     /// The response data.
