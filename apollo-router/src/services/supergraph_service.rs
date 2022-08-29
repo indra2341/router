@@ -274,6 +274,8 @@ where
                 .errors(errors)
                 .status_code(status_code)
                 .context(context_cloned)
+                .status(200)
+                .message("")
                 .build()
                 .expect("building a response like this should not fail"))
         });

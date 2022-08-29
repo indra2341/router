@@ -119,6 +119,8 @@ where
                                     .data(Value::default())
                                     .errors(errors)
                                     .context(req.context)
+                                    .status(200)
+                                    .message(String::default())
                                     .build()
                                     .expect("response is valid");
 

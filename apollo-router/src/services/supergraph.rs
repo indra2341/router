@@ -219,8 +219,6 @@ impl Response {
     #[builder(visibility = "pub")]
     fn fake_new(
         data: Option<Value>,
-        status: i32,
-        message: String,
         path: Option<Path>,
         errors: Vec<Error>,
         // Skip the `Object` type alias in order to use buildstructor’s map special-casing
@@ -232,8 +230,8 @@ impl Response {
         Response::new(
             data,
             path,
-            status,
-            message,
+            200,
+            String::default(),
             errors,
             extensions,
             status_code,

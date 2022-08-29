@@ -46,6 +46,8 @@ where
                         .errors(errors)
                         .status_code(StatusCode::BAD_REQUEST)
                         .context(req.context)
+                        .status(400)
+                        .message("Bad Request".to_string())
                         .build()
                         .expect("response is valid");
                     Ok(ControlFlow::Break(res))
