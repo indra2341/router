@@ -5,7 +5,6 @@ use serde::Deserialize;
 use serde::Serialize;
 use serde_json_bytes::ByteString;
 use serde_json_bytes::Map;
-use http::StatusCode;
 
 use crate::error::Error;
 use crate::error::FetchError;
@@ -195,6 +194,14 @@ pub struct IncrementalResponse {
     #[serde(skip_serializing_if = "Option::is_none", default)]
     pub label: Option<String>,
 
+    // custom response status
+    #[serde(skip_serializing_if = "Option::is_none", default)]
+    pub status: Option<i32>,
+    
+    // custom response message
+    #[serde(skip_serializing_if = "Option::is_none", default)]
+    pub message: Option<String>,
+
     /// The response data.
     #[serde(skip_serializing_if = "Option::is_none", default)]
     pub data: Option<Value>,
@@ -218,6 +225,8 @@ impl IncrementalResponse {
     #[builder(visibility = "pub")]
     fn new(
         label: Option<String>,
+        status: Option<i32>,
+        message: Option<String>,
         data: Option<Value>,
         path: Option<Path>,
         errors: Vec<Error>,
@@ -225,6 +234,8 @@ impl IncrementalResponse {
     ) -> Self {
         Self {
             label,
+            status,
+            message,
             data,
             path,
             errors,
